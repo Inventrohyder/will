@@ -1,6 +1,7 @@
 package com.inventrohyder.will
 
 import android.app.Application
+import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -12,4 +13,10 @@ class WillApplication : Application() {
     // rather than when the application starts
     val database by lazy { WillRoomDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { WillRepository(database.willDao()) }
+
+    override fun onCreate() {
+        super.onCreate()
+        // Apply dynamic color
+        DynamicColors.applyToActivitiesIfAvailable(this)
+    }
 }
