@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:fullBackupContent="@xml/backup_descriptor"
+        android:name=".WillApplication"
         android:theme="@style/Theme.Will">
         <activity
             android:name=".MainActivity"
