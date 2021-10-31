@@ -266,7 +266,7 @@
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <jp.wasabeef.richeditor.RichEditor
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_will"
         android:layout_width="0dp"
         android:layout_height="0dp"
