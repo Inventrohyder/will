@@ -7,4 +7,5 @@
     <string name="hint_will">Will…</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Will not saved because it is empty.</string>
+    <string name="bold_letter">B</string>
 </resources>
