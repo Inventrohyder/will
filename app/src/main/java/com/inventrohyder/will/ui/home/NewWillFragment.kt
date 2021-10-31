@@ -1,29 +1,22 @@
 package com.inventrohyder.will.ui.home
 
-import android.graphics.Typeface
+
 import android.os.Bundle
-import android.text.Editable
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.TextWatcher
-import android.text.style.CharacterStyle
-import android.text.style.StyleSpan
-import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.inventrohyder.will.*
 import com.inventrohyder.will.databinding.FragmentNewWillBinding
+import jp.wasabeef.richeditor.RichEditor
 
 class NewWillFragment : Fragment() {
 
-    private lateinit var editWordView: EditText
+    private lateinit var editWordView: RichEditor
     private var _binding: FragmentNewWillBinding? = null
 
     // This property is only valid between onCreateView and
@@ -43,17 +36,13 @@ class NewWillFragment : Fragment() {
         _binding = FragmentNewWillBinding.inflate(inflater, container, false)
         val root: View = binding.root
         editWordView = root.findViewById(R.id.edit_will)
-        editWordView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        editWordView.setOnTextChangeListener { text ->
+            if (text.isEmpty()) {
+                editWordView.setPlaceholder(getString(R.string.hint_will))
             }
-
-            override fun afterTextChanged(s: Editable?) {
-                willText += s
-            }
-        })
+            willText = text
+        }
 
         val button = root.findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
@@ -73,42 +62,13 @@ class NewWillFragment : Fragment() {
         binding.toggleButton.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
             // Respond to button selection
             when (checkedId) {
-                R.id.action_bold -> setBold()
-                R.id.action_italic -> setItalic()
-                R.id.action_underline -> setUnderline()
-//                R.id.action_bold -> editWordView.setBold()
-//                R.id.action_italic -> editWordView.setItalic()
-//                R.id.action_underline -> editWordView.setUnderline()
-//                R.id.action_undo -> editWordView.undo()
-//                R.id.action_redo -> editWordView.redo()
-//                R.id.action_subscript -> editWordView.setSubscript()
-//                R.id.action_superscript -> editWordView.setSuperscript()
+                R.id.action_bold -> editWordView.setBold()
+                R.id.action_italic -> editWordView.setItalic()
+                R.id.action_underline -> editWordView.setUnderline()
+                R.id.action_undo -> editWordView.undo()
+                R.id.action_redo -> editWordView.redo()
             }
         }
         return root
-    }
-
-
-    private fun setStyle(style: CharacterStyle) {
-        val spannableString: Spannable = SpannableStringBuilder(editWordView.text)
-        spannableString.setSpan(
-            style,
-            editWordView.selectionStart,
-            editWordView.selectionEnd,
-            0
-        )
-        editWordView.setText(spannableString)
-    }
-
-    private fun setBold() {
-        setStyle(StyleSpan(Typeface.BOLD))
-    }
-
-    private fun setItalic() {
-        setStyle(StyleSpan(Typeface.ITALIC))
-    }
-
-    private fun setUnderline() {
-        setStyle(UnderlineSpan())
     }
 }

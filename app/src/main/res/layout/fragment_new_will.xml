@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textAppearance="?android:textAppearanceLarge"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -32,6 +33,7 @@
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/bold_description"
             app:icon="@drawable/ic_twotone_format_bold_24" />
 
         <Button
@@ -39,6 +41,7 @@
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/italic_description"
             app:icon="@drawable/ic_twotone_format_italic_24" />
 
         <Button
@@ -46,6 +49,7 @@
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/underline_description"
             app:icon="@drawable/ic_twotone_format_underlined_24" />
 
 
@@ -54,6 +58,7 @@
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/undo_description"
             app:icon="@drawable/ic_twotone_undo_24" />
 
         <Button
@@ -61,21 +66,8 @@
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/redo_description"
             app:icon="@drawable/ic_twotone_redo_24" />
-
-        <Button
-            android:id="@+id/action_subscript"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/ic_twotone_subscript_24" />
-
-        <Button
-            android:id="@+id/action_superscript"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/ic_twotone_superscript_24" />
 
 
         <!--        <ImageButton-->
@@ -266,14 +258,17 @@
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/edit_will"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autofillHints=""
-        android:ems="10"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
         android:gravity="start|top"
-        android:hint="@string/hint_will"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toEndOf="parent"

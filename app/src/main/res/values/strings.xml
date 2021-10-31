@@ -8,4 +8,11 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Will not saved because it is empty.</string>
     <string name="bold_letter">B</string>
+    <string name="bold_description">Bold</string>
+    <string name="italic_description">Italic</string>
+    <string name="underline_description">Underline</string>
+    <string name="undo_description">Undo</string>
+    <string name="redo_description">Redo</string>
+    <string name="subscript_description">Subscript</string>
+    <string name="superscript_description">Superscript</string>
 </resources>
