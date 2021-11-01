@@ -1,5 +1,7 @@
 package com.inventrohyder.will
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +25,11 @@ class WillListAdapter : ListAdapter<Will, WillListAdapter.WillViewHolder>(WillsC
         private val willItemView: TextView = itemView.findViewById(R.id.textView)
 
         fun bind(text: String?) {
-            willItemView.text = text
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                willItemView.text = Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT).trim()
+            } else {
+                willItemView.text = Html.fromHtml(text).trim()
+            }
         }
 
         companion object {
