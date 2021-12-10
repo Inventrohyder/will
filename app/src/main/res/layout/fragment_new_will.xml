@@ -18,25 +18,74 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/action_bold"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/bold_description"
+            app:icon="@drawable/ic_twotone_format_bold_24" />
+
+        <Button
+            android:id="@+id/action_italic"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/italic_description"
+            app:icon="@drawable/ic_twotone_format_italic_24" />
+
+        <Button
+            android:id="@+id/action_underline"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/underline_description"
+            app:icon="@drawable/ic_twotone_format_underlined_24" />
+
+
+        <Button
+            android:id="@+id/action_undo"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/undo_description"
+            app:icon="@drawable/ic_twotone_undo_24" />
+
+        <Button
+            android:id="@+id/action_redo"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/redo_description"
+            app:icon="@drawable/ic_twotone_redo_24" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/edit_will"
-        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
+        android:layout_weight="1"
         android:gravity="start|top"
-        android:hint="@string/hint_will"
         android:inputType="textMultiLine"
-        android:minHeight="48dp"
-        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

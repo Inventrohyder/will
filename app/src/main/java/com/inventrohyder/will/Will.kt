@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "will_table")
 data class Will(
-    @PrimaryKey
-    @ColumnInfo(name = "will") val will: String
+    @ColumnInfo(name = "will") val will: String,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0 //last so that we don't have to pass an ID value or named arguments
 )
