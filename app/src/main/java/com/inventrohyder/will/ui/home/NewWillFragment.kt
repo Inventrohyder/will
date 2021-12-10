@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.inventrohyder.will.*
@@ -57,12 +58,26 @@ class NewWillFragment : Fragment() {
             colorOnSurface.data
         )
 
+        // Update the view model when the texts changes
         editWordView.setOnTextChangeListener { text ->
             if (text.isEmpty()) {
                 editWordView.setPlaceholder(getString(R.string.hint_will))
             }
             homeViewModel.setText(text)
         }
+
+        // Set the default will text to be the latest will
+        // If there is no previous will then just show some place holder text.
+        willViewModel.latestWill.observe(viewLifecycleOwner, object : Observer<List<Will>> {
+            override fun onChanged(t: List<Will>?) {
+                if (t != null) {
+                    homeViewModel.setText(t[0].will)
+
+                    editWordView.html = t[0].will
+                }
+                willViewModel.latestWill.removeObserver(this)
+            }
+        })
 
         val button = root.findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
@@ -96,6 +111,8 @@ class NewWillFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        editWordView.html = homeViewModel.text.value
+        if (homeViewModel.text.value!!.isNotEmpty()) {
+            editWordView.html = homeViewModel.text.value
+        }
     }
 }

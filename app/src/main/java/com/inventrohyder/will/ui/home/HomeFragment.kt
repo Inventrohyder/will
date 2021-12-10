@@ -1,6 +1,8 @@
 package com.inventrohyder.will.ui.home
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,23 +43,18 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         val tvLatestWill = root.findViewById<TextView>(R.id.tvLatestWill)
-        willViewModel.latestWill.observe(viewLifecycleOwner) { wills ->
-            tvLatestWill.text = wills.get(0).will
-        }
 
-//        val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
-//        val adapter = WillListAdapter()
-//        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(context)
-
-
-        // Add an observer on the LiveData returned by getAlphabetizedWills.
+        // Add an observer on the LiveData returned by getLatestWill
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-//        willViewModel.allWills.observe(viewLifecycleOwner) { wills ->
-//            // Update the cached copy of the wills in the adapter.
-//            wills.let { adapter.submitList(it) }
-//        }
+        willViewModel.latestWill.observe(viewLifecycleOwner) { wills ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tvLatestWill.text = Html.fromHtml(wills[0].will, Html.FROM_HTML_MODE_LEGACY)
+            } else {
+                tvLatestWill.text = Html.fromHtml(wills[0].will)
+            }
+        }
+
 
         val fab = root.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
