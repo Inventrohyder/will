@@ -11,6 +11,8 @@ class WillViewModel(private val repository: WillRepository) : ViewModel() {
     // - Repository is completely separated from the UI through the ViewModel.
     val allWills: LiveData<List<Will>> = repository.allWills.asLiveData()
 
+    val latestWill: LiveData<List<Will>> = repository.latestWill.asLiveData()
+
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */

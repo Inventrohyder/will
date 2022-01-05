@@ -8,8 +8,11 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WillDao {
-    @Query("SELECT * FROM will_table")
+    @Query("SELECT * FROM will_table ORDER BY will_table.id desc")
     fun getWills(): Flow<List<Will>>
+
+    @Query("SELECT * FROM will_table ORDER BY will_table.id desc LIMIT 1")
+    fun getLatestWill(): Flow<List<Will>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(will: Will)
